@@ -18,7 +18,7 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
 
     @Query("SELECT v FROM Vehicle v " +
             "JOIN v.brand b " +
-            "WHERE (v.vehicleName LIKE 'S%' AND v.price > 10000000) " +
-            "OR (v.vehicleName LIKE 'S%' AND b.type = 'bus' AND v.price <= 10000000)")
+            "WHERE (b.brandName LIKE 'S%' AND v.price > 10000000) " +
+            "OR (b.brandName LIKE 'S%' AND b.type = 'bus' AND v.price <= 10000000)")
     List<Vehicle> findVehiclesWithConditions(); //check condition again
 }
