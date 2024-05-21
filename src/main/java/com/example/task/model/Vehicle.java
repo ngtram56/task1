@@ -27,7 +27,7 @@ public class Vehicle {
     private String vehicleName;
 
     @Column
-    private int year;
+    private int year; //primitive(int) -> non-primitive(Integer)
 
     @Column
     private BigDecimal price;
@@ -39,13 +39,10 @@ public class Vehicle {
     @CreationTimestamp
     @DateTimeFormat(pattern = "dd/MM/yy")
     private LocalDate instant;
-
-
+	
     @ManyToOne
     @JoinColumn(name = "brand_id")
     @JsonIgnore
     private Brand brand;
-
-
-
+	
 }

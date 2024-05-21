@@ -16,14 +16,15 @@ public class BrandController {
     @Autowired
     private BrandService brandService;
 
-    @GetMapping("/get-all-brand")
+    @GetMapping("/get-all-brand") //don't use verb in path
     public List<Brand> getBrands(){
         return brandService.getAll();
     }
 
-    @PostMapping("add-brand")
-    public Brand addBrand (@RequestBody Brand brand){
+    @PostMapping("add-brand") //don't use verb in path
+    public Brand addBrand (@RequestBody Brand brand){ //RequestBody required using DTO input
         String type = brand.getType().toLowerCase();
+		//using enum to handle type
         if (type.equals("car") || type.equals("truck") || type.equals("bus")) {
             brand.setType(type);
             if (brand.getBrandName() == null || brand.getBrandName().isEmpty()) {

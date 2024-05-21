@@ -3,6 +3,7 @@ package com.example.task.repository;
 import com.example.task.model.Vehicle;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -19,5 +20,5 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
             "JOIN v.brand b " +
             "WHERE (v.vehicleName LIKE 'S%' AND v.price > 10000000) " +
             "OR (v.vehicleName LIKE 'S%' AND b.type = 'bus' AND v.price <= 10000000)")
-    List<Vehicle> findVehiclesWithConditions();
+    List<Vehicle> findVehiclesWithConditions(); //check condition again
 }

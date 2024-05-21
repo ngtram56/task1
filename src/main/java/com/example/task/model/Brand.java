@@ -24,7 +24,7 @@ public class Brand {
     private String brandName;
 
     @Column
-    private String type;
+    private String type; //using enum to handle type
 
     @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Vehicle> vehicles;

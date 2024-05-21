@@ -20,21 +20,21 @@ public class VehicleController {
     private VehicleService vehicleService;
     private BrandService brandService;
 
-    @GetMapping("/get-all-vehicle")
-    public List<Vehicle> getVehicles(){
+    @GetMapping("/get-all-vehicle") //don't use verb in path
+    public List<Vehicle> getVehicles(){  //use DTO to return data
         return vehicleService.getAllVehicle();
     }
 
 
-    @PostMapping("/add-vehicle")
-    public Vehicle addVehicle(@RequestBody VehicleDTO vehicleDTO) {
+    @PostMapping("/add-vehicle") //don't use verb in path
+    public Vehicle addVehicle(@RequestBody VehicleDTO vehicleDTO) { //use DTO to return data
         return vehicleService.addVehicle(vehicleDTO);
     }
 
-    @PutMapping("/update-vehicle/{id}")
+    @PutMapping("/update-vehicle/{id}") //don't use verb in path
     public ResponseEntity<?> updateVehicle(@PathVariable Long id, @RequestBody VehicleDTO vehicleDTO) {
         try {
-            Vehicle updatedVehicle = vehicleService.updateVehicle(id, vehicleDTO);
+            Vehicle updatedVehicle = vehicleService.updateVehicle(id, vehicleDTO); //use DTO to return data
             return ResponseEntity.ok(updatedVehicle);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Không tìm thấy");
@@ -43,7 +43,7 @@ public class VehicleController {
         }
     }
 
-    @DeleteMapping("/delete-vehicle/{id}")
+    @DeleteMapping("/delete-vehicle/{id}") //don't use verb in path
     public ResponseEntity<?> deleteVehicle(@PathVariable Long id) {
         try {
             vehicleService.deleteVehicle(id);
@@ -62,14 +62,14 @@ public class VehicleController {
             @RequestParam(required = false) BigDecimal price,
             @RequestParam(required = false) String owner) {
 
-        List<Vehicle> vehicles = vehicleService.searchVehicles(brandId, year, price, owner);
+        List<Vehicle> vehicles = vehicleService.searchVehicles(brandId, year, price, owner); //use DTO to return data
 
         return new ResponseEntity<>(vehicles, HttpStatus.OK);
     }
 
     @GetMapping("/find-vehicles")
     public List<Vehicle> findVehiclesWithConditions() {
-        return vehicleService.findVehiclesWithConditions();
+        return vehicleService.findVehiclesWithConditions(); //use DTO to return data
     }
 
 }
